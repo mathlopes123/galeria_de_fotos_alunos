@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Fotos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-item {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            /* Imagens começam menores */
+            transform: scale(0.85);
+        }
+        
+        /* Removido hover, adicionado estado expandido */
+        .gallery-item.expanded {
+            transform: scale(1.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        /* Hover sutil apenas para indicar interatividade */
+        .gallery-item:hover {
+            transform: scale(0.9);
+        }
+        
+        .gallery-item.expanded:hover {
+            transform: scale(1.1);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .gallery-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .gallery-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h1 class="text-3xl font-bold text-gray-900 text-center">Galeria de Fotos</h1>
+            <!-- Atualizado texto explicativo -->
+            <p class="text-gray-600 text-center mt-2">Clique nas imagens para vê-las crescer</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <div class="gallery-container">
+            <!-- Adicionado campo de texto editável em cada imagem -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/adriel.jpg" 
+                     alt="Adriel Vinicius da Luz Tomaz" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="1º Adriel Vinicius da Luz Tomaz" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/breno.jpg" 
+                     alt="Breno Ferreira de Brito" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="2º Breno Ferreira de Brito" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/carlos.jpg" 
+                     alt="Carlos Douglas Araujo de Souza" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="3º Carlos Douglas Araujo de Souza" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/cleiton.jpg" 
+                     alt="Cleiton Douglas da Silva" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="4º Cleiton Douglas da Silva" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/derek.jpg" 
+                     alt="Derek Eduardo Delgado de Souza" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="5º Derek Eduardo Delgado de Souza" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/semfoto.jpg" 
+                     alt="Felipe Nader de Macedo Neves" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="6º Felipe Nader de Macedo Neves" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/gabriel.jpg" 
+                     alt="Gabriel Merico Hort" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="7º Gabriel Merico Hort" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/semfoto.jpg" 
+                     alt="Guilherme dos Reis Soares dos Santos" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="8º Guilherme dos Reis Soares dos Santos" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/gustavo.jpg" 
+                     alt="Gustavo Martins Lyra" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="9º Gustavo Martins Lyra" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/jackson.jpg" 
+                     alt="Jackson José Adão Félix" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="10º Jackson José Adão Félix" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/semfoto.jpg" 
+                     alt="Janaine Nunes da Silva" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="11º Janaine Nunes da Silva" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/semfoto.jpg" 
+                     alt="João Gabriel Carmo Bonfim" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="12º João Gabriel Carmo Bonfim" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/josé.jpg" 
+                     alt="João Gabriel José" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="13º João Gabriel José" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/leonardo.jpg" 
+                     alt="Leonardo Antonio Prado Trindade" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="14º Leonardo Antonio Prado Trindade" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/lucas.jpg" 
+                     alt="Lucas Calciolari dos Santos" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="15º Lucas Calciolari dos Santos" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/maria_borzuk.jpg" 
+                     alt="Maria Eduarda Borzuk da Fonseca Urbanski" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="16º Maria Eduarda Borzuk da Fonseca Urbanski" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/semfoto.jpg" 
+                     alt="Maria Gabriela Aquino Pinheiro" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="17º Maria Gabriela Aquino Pinheiro" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/mateus.jpg" 
+                     alt="Mateus Henrique de Carvalho" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="18º Mateus Henrique de Carvalho" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/matheus.jpg" 
+                     alt="Matheus dos Santos Lopes" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="19º Matheus dos Santos Lopes" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/semfoto.jpg" 
+                     alt="Pedro Eduardo Doarte" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="20º Pedro Eduardo Doarte" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/renan.jpg" 
+                     alt="Renan Stefani Lira" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="21º Renan Stefani Lira" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/sabrina.jpg" 
+                     alt="Sabrina Oliveira Alves" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="22º Sabrina Oliveira Alves" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/samantha.jpg" 
+                     alt="Samantha Christakis Garcia Colluci" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="23º Samantha Christakis Garcia Colluci" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/victor.jpg" 
+                     alt="Victor Gabriel de Souza" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="24º Victor Gabriel de Souza" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/queiroz.jpg" 
+                     alt="Vitor Queiroz de Brito Nascimento" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="25º Vitor Queiroz de Brito Nascimento" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+                <img src="img/semfoto.jpg" 
+                     alt="Maria Vitória de Quadros Nascimento" 
+                     class="w-full h-48 object-cover">
+                <div class="p-2 bg-white">
+                    <input type="text" placeholder="26º Maria Vitória de Quadros Nascimento" 
+                           class="w-full text-sm text-center border-none outline-none bg-transparent"
+                           onclick="event.stopPropagation()">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <p class="text-center text-gray-600">© 2025 Galeria de Fotos dos Alunos do Colégio Estadual Barbosa Ferraz.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
