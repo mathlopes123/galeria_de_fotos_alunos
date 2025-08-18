@@ -1,85 +1,177 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-BR"> <!-- Elemento raiz com idioma português brasileiro -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Fotos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Configurações de metadados do documento -->
+    <meta charset="UTF-8"> <!-- Define codificação de caracteres UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuração responsiva para dispositivos móveis -->
+    <title>Galeria de Fotos</title> <!-- Título que aparece na aba do navegador -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Carrega framework CSS Tailwind via CDN -->
     <style>
+        /* Estilos personalizados para a galeria de fotos */
+        
+        /* Estilo base para cada item da galeria */
         .gallery-item {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            cursor: pointer;
-            /* Imagens começam menores */
-            transform: scale(0.85);
+            transition: transform 0.4s ease, box-shadow 0.4s ease; /* Anima suavemente transformações e sombras em 0.4 segundos */
+            cursor: pointer; /* Mostra cursor de "mão" indicando que é clicável */
+            transform: scale(0.85); /* Começa com tamanho reduzido (85% do tamanho original) */
         }
-        
-        /* Removido hover, adicionado estado expandido */
+
+        /* Estilo aplicado quando o item está expandido (após clique) */
         .gallery-item.expanded {
-            transform: scale(1.1);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-            z-index: 10;
+            transform: scale(1.1); /* Aumenta o tamanho para 110% */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), /* Adiciona sombra maior para destacar */
+                        0 10px 10px -5px rgba(0, 0, 0, 0.1); /* Segunda camada de sombra para profundidade */
+            z-index: 10; /* Coloca o item acima dos outros elementos */
         }
-        
-        /* Hover sutil apenas para indicar interatividade */
+
+        /* Efeito suave ao passar o mouse sobre o item */
         .gallery-item:hover {
-            transform: scale(0.9);
+            transform: scale(0.9); /* Aumenta ligeiramente o tamanho ao passar o mouse */
         }
-        
+
+        /* Mantém o mesmo tamanho se estiver expandido e com hover */
         .gallery-item.expanded:hover {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Evita que o hover altere o tamanho do item expandido */
         }
-        
+
+        /* Container principal que organiza os itens da galeria */
         .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            padding: 2rem;
+            display: grid; /* Usa CSS Grid para layout */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Colunas automáticas com largura mínima de 200px */
+            gap: 1rem; /* Espaçamento de 1rem entre os itens */
+            padding: 2rem; /* Espaço interno de 2rem no container */
         }
-        
+
+        /* Media query para telas pequenas (640px ou mais) */
         @media (min-width: 640px) {
             .gallery-container {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, 1fr); /* Mostra 3 colunas iguais */
             }
         }
-        
+
+        /* Media query para tablets (768px ou mais) */
         @media (min-width: 768px) {
             .gallery-container {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(4, 1fr); /* Mostra 4 colunas iguais */
             }
         }
-        
+
+        /* Media query para desktops (1024px ou mais) */
         @media (min-width: 1024px) {
             .gallery-container {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(5, 1fr); /* Mostra 5 colunas iguais */
             }
+        }
+
+        /* Adicionando estilos para o modal popup */
+        /* Overlay do modal que cobre toda a tela */
+        .modal-overlay {
+            position: fixed; /* Posição fixa em relação à viewport */
+            top: 0; /* Alinha ao topo */
+            left: 0; /* Alinha à esquerda */
+            width: 100%; /* Largura total da tela */
+            height: 100%; /* Altura total da tela */
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo preto semi-transparente */
+            display: flex; /* Usa flexbox para centralizar conteúdo */
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            z-index: 1000; /* Z-index alto para ficar acima de tudo */
+            opacity: 0; /* Começa invisível */
+            visibility: hidden; /* Escondido por padrão */
+            transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave para aparecer/desaparecer */
+        }
+
+        /* Modal visível */
+        .modal-overlay.show {
+            opacity: 1; /* Totalmente visível */
+            visibility: visible; /* Torna visível */
+        }
+
+        /* Container do conteúdo do modal */
+        .modal-content {
+            position: relative; /* Posição relativa para posicionar elementos filhos */
+            max-width: 90vw; /* Largura máxima de 90% da viewport */
+            max-height: 90vh; /* Altura máxima de 90% da viewport */
+            display: flex; /* Flexbox para organizar conteúdo */
+            flex-direction: column; /* Organiza elementos em coluna */
+            align-items: center; /* Centraliza itens */
+        }
+
+        /* Imagem dentro do modal */
+        .modal-image {
+            max-width: 100%; /* Largura máxima de 100% do container */
+            max-height: 80vh; /* Altura máxima de 80% da viewport */
+            object-fit: contain; /* Mantém proporção da imagem */
+            border-radius: 8px; /* Bordas arredondadas */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Sombra dramática */
+        }
+
+        /* Texto do nome no modal */
+        .modal-name {
+            color: white; /* Texto branco */
+            font-size: 1.5rem; /* Tamanho da fonte 1.5rem */
+            font-weight: 600; /* Peso da fonte semi-bold */
+            margin-top: 1rem; /* Margem superior de 1rem */
+            text-align: center; /* Texto centralizado */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto para melhor legibilidade */
+        }
+
+        /* Botão de fechar (X) */
+        .close-button {
+            position: absolute; /* Posição absoluta */
+            top: 20px; /* 20px do topo */
+            right: 20px; /* 20px da direita */
+            background: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Borda branca semi-transparente */
+            color: white; /* Texto branco */
+            width: 50px; /* Largura de 50px */
+            height: 50px; /* Altura de 50px */
+            border-radius: 50%; /* Formato circular */
+            display: flex; /* Flexbox para centralizar */
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            font-size: 24px; /* Tamanho da fonte 24px */
+            font-weight: bold; /* Peso da fonte bold */
+            cursor: pointer; /* Cursor de mão */
+            transition: all 0.3s ease; /* Transição suave para todos os efeitos */
+            backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+        }
+
+        /* Efeito hover no botão de fechar */
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.3); /* Fundo mais opaco no hover */
+            border-color: rgba(255, 255, 255, 0.5); /* Borda mais opaca no hover */
+            transform: scale(1.1); /* Aumenta ligeiramente o tamanho */
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <header class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 py-6">
-            <h1 class="text-3xl font-bold text-gray-900 text-center">Galeria de Fotos</h1>
-            <!-- Atualizado texto explicativo -->
-            <p class="text-gray-600 text-center mt-2">Clique nas imagens para vê-las crescer</p>
+<body class="bg-gray-50 min-h-screen"> <!-- Corpo com fundo cinza claro e altura mínima da tela -->
+    <!-- Cabeçalho da página -->
+    <header class="bg-white shadow-sm border-b"> <!-- Header com fundo branco, sombra sutil e borda inferior -->
+        <div class="max-w-7xl mx-auto px-4 py-6"> <!-- Container centralizado com padding -->
+            <h1 class="text-3xl font-bold text-gray-900 text-center">Galeria de Fotos</h1> <!-- Título principal centralizado -->
+            <p class="text-gray-600 text-center mt-2">Clique nas imagens para vê-las em tela cheia</p> <!-- Texto explicativo atualizado -->
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto">
-        <div class="gallery-container">
-            <!-- Adicionado campo de texto editável em cada imagem -->
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
-                <img src="img/adriel.jpg" 
-                     alt="Adriel Vinicius da Luz Tomaz" 
-                     class="w-full h-48 object-cover">
-                <div class="p-2 bg-white">
-                    <input type="text" placeholder="1º Adriel Vinicius da Luz Tomaz" 
-                           class="w-full text-sm text-center border-none outline-none bg-transparent"
-                           onclick="event.stopPropagation()">
-                </div>
-            </div>
+    <!-- Conteúdo principal da página -->
+    <main class="max-w-7xl mx-auto"> <!-- Container principal centralizado -->
+        <div class="gallery-container"> <!-- Container da galeria com CSS Grid -->
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 1: Adriel Vinicius da Luz Tomaz -->
+        <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
+            <img src="img/adriel.jpg" 
+                 alt="Adriel Vinicius da Luz Tomaz" 
+                 class="w-full h-48 object-cover">
+            <div class="p-2 bg-white">
+                <input type="text" placeholder="1º Adriel Vinicius da Luz Tomaz" 
+                       class="w-full text-sm text-center border-none outline-none bg-transparent"
+                       onclick="event.stopPropagation()">
+            </div>
+        </div>
+            
+            <!-- Item 2: Breno Ferreira de Brito -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/breno.jpg" 
                      alt="Breno Ferreira de Brito" 
                      class="w-full h-48 object-cover">
@@ -90,7 +182,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 3: Carlos Douglas Araujo de Souza -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/carlos.jpg" 
                      alt="Carlos Douglas Araujo de Souza" 
                      class="w-full h-48 object-cover">
@@ -101,7 +194,8 @@
                 </div>
             </div>
 
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 4: Cleiton Douglas da Silva -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/cleiton.jpg" 
                      alt="Cleiton Douglas da Silva" 
                      class="w-full h-48 object-cover">
@@ -112,7 +206,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 5: Derek Eduardo Delgado de Souza -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/derek.jpg" 
                      alt="Derek Eduardo Delgado de Souza" 
                      class="w-full h-48 object-cover">
@@ -123,7 +218,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 6: Felipe Nader de Macedo Neves -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/semfoto.jpg" 
                      alt="Felipe Nader de Macedo Neves" 
                      class="w-full h-48 object-cover">
@@ -134,7 +230,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 7: Gabriel Merico Hort -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/gabriel.jpg" 
                      alt="Gabriel Merico Hort" 
                      class="w-full h-48 object-cover">
@@ -145,7 +242,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 8: Guilherme dos Reis Soares dos Santos -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/semfoto.jpg" 
                      alt="Guilherme dos Reis Soares dos Santos" 
                      class="w-full h-48 object-cover">
@@ -156,7 +254,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 9: Gustavo Martins Lyra -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/gustavo.jpg" 
                      alt="Gustavo Martins Lyra" 
                      class="w-full h-48 object-cover">
@@ -167,7 +266,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 10: Jackson José Adão Félix -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/jackson.jpg" 
                      alt="Jackson José Adão Félix" 
                      class="w-full h-48 object-cover">
@@ -178,7 +278,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 11: Janaine Nunes da Silva -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/semfoto.jpg" 
                      alt="Janaine Nunes da Silva" 
                      class="w-full h-48 object-cover">
@@ -189,7 +290,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 12: João Gabriel Carmo Bonfim -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/semfoto.jpg" 
                      alt="João Gabriel Carmo Bonfim" 
                      class="w-full h-48 object-cover">
@@ -200,7 +302,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 13: João Gabriel José -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/josé.jpg" 
                      alt="João Gabriel José" 
                      class="w-full h-48 object-cover">
@@ -211,7 +314,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 14: Leonardo Antonio Prado Trindade -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/leonardo.jpg" 
                      alt="Leonardo Antonio Prado Trindade" 
                      class="w-full h-48 object-cover">
@@ -222,7 +326,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 15: Lucas Calciolari dos Santos -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/lucas.jpg" 
                      alt="Lucas Calciolari dos Santos" 
                      class="w-full h-48 object-cover">
@@ -233,7 +338,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 16: Maria Eduarda Borzuk da Fonseca Urbanski -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/maria_borzuk.jpg" 
                      alt="Maria Eduarda Borzuk da Fonseca Urbanski" 
                      class="w-full h-48 object-cover">
@@ -244,7 +350,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 17: Maria Gabriela Aquino Pinheiro -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/semfoto.jpg" 
                      alt="Maria Gabriela Aquino Pinheiro" 
                      class="w-full h-48 object-cover">
@@ -255,7 +362,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 18: Mateus Henrique de Carvalho -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/mateus.jpg" 
                      alt="Mateus Henrique de Carvalho" 
                      class="w-full h-48 object-cover">
@@ -266,7 +374,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 19: Matheus dos Santos Lopes -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/matheus.jpg" 
                      alt="Matheus dos Santos Lopes" 
                      class="w-full h-48 object-cover">
@@ -277,7 +386,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 20: Pedro Eduardo Doarte -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/semfoto.jpg" 
                      alt="Pedro Eduardo Doarte" 
                      class="w-full h-48 object-cover">
@@ -288,8 +398,9 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
-                <img src="img/renan.jpg" 
+            <!-- Item 21: Renan Stefani Lira -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
+                <img src="img/sabrina.jpg" 
                      alt="Renan Stefani Lira" 
                      class="w-full h-48 object-cover">
                 <div class="p-2 bg-white">
@@ -299,8 +410,9 @@
                 </div>
             </div>
 
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
-                <img src="img/sabrina.jpg" 
+            <!-- Item 22: Sabrina Oliveira Alves -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
+                <img src="img/samantha.jpg" 
                      alt="Sabrina Oliveira Alves" 
                      class="w-full h-48 object-cover">
                 <div class="p-2 bg-white">
@@ -310,7 +422,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 23: Samantha Christakis Garcia Colluci -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/samantha.jpg" 
                      alt="Samantha Christakis Garcia Colluci" 
                      class="w-full h-48 object-cover">
@@ -321,7 +434,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 24: Victor Gabriel de Souza -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/victor.jpg" 
                      alt="Victor Gabriel de Souza" 
                      class="w-full h-48 object-cover">
@@ -332,7 +446,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 25: Vitor Queiroz de Brito Nascimento -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/queiroz.jpg" 
                      alt="Vitor Queiroz de Brito Nascimento" 
                      class="w-full h-48 object-cover">
@@ -343,7 +458,8 @@
                 </div>
             </div>
             
-            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="toggleExpand(this)">
+            <!-- Item 26: Maria Vitória de Quadros Nascimento -->
+            <div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)">
                 <img src="img/semfoto.jpg" 
                      alt="Maria Vitória de Quadros Nascimento" 
                      class="w-full h-48 object-cover">
@@ -356,12 +472,129 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t mt-12">
-        <div class="max-w-7xl mx-auto px-4 py-6">
-            <p class="text-center text-gray-600">© 2025 Galeria de Fotos dos Alunos do Colégio Estadual Barbosa Ferraz.</p>
+    <!-- Adicionando modal popup para visualização em tela cheia -->
+    <!-- Modal overlay que cobre toda a tela -->
+    <div id="imageModal" class="modal-overlay"> <!-- Modal com ID único para controle via JavaScript -->
+        <div class="modal-content"> <!-- Container do conteúdo centralizado -->
+            <!-- Botão de fechar (X) posicionado no canto superior direito -->
+            <button class="close-button" onclick="closeModal()" aria-label="Fechar modal"> <!-- Botão acessível com aria-label -->
+                ×
+            </button>
+            <!-- Imagem ampliada que será exibida no modal -->
+            <img id="modalImage" class="modal-image" src="/placeholder.svg" alt=""> <!-- Imagem que receberá src e alt dinamicamente -->
+            <!-- Nome do aluno exibido abaixo da imagem -->
+            <div id="modalName" class="modal-name"></div> <!-- Container do nome que receberá texto dinamicamente -->
+        </div>
+    </div>
+
+    <!-- Rodapé da página -->
+    <footer class="bg-white border-t mt-12"> <!-- Footer com fundo branco, borda superior e margem top -->
+        <div class="max-w-7xl mx-auto px-4 py-6"> <!-- Container centralizado com padding -->
+            <p class="text-center text-gray-600">© 2025 Galeria de Fotos dos Alunos do Colégio Estadual Barbosa Ferraz.</p> <!-- Texto de copyright centralizado -->
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        
+        /**
+         * Função para abrir o modal com a imagem em tela cheia
+         * @param {HTMLElement} element - O elemento da galeria que foi clicado
+         */
+        function openModal(element) {
+            // Busca a imagem dentro do elemento clicado
+            const img = element.querySelector("img");
+            // Busca o campo de input com o nome do aluno
+            const input = element.querySelector("input");
+            
+            // Obtém referências aos elementos do modal
+            const modal = document.getElementById("imageModal"); // Modal overlay
+            const modalImage = document.getElementById("modalImage"); // Imagem do modal
+            const modalName = document.getElementById("modalName"); // Nome do aluno no modal
+            
+            // Define a fonte da imagem do modal como a mesma da galeria
+            modalImage.src = img.src;
+            // Define o texto alternativo da imagem
+            modalImage.alt = img.alt;
+            // Define o nome exibido (usa o valor digitado ou o placeholder)
+            modalName.textContent = input.value || input.placeholder;
+            
+            // Mostra o modal adicionando a classe 'show'
+            modal.classList.add("show");
+            // Previne scroll da página quando modal está aberto
+            document.body.style.overflow = "hidden";
+        }
+        
+        /**
+         * Função para fechar o modal
+         */
+        function closeModal() {
+            // Obtém referência ao modal
+            const modal = document.getElementById("imageModal");
+            // Remove a classe 'show' para esconder o modal
+            modal.classList.remove("show");
+            // Restaura o scroll da página
+            document.body.style.overflow = "auto";
+        }
+        
+        // Event listeners para melhorar a experiência do usuário
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtém referência ao modal
+            const modal = document.getElementById("imageModal");
+            
+            // Fecha o modal quando clicar fora da imagem (no overlay)
+            modal.addEventListener("click", function(event) {
+                // Verifica se o clique foi no overlay (não na imagem ou conteúdo)
+                if (event.target === modal) {
+                    closeModal(); // Fecha o modal
+                }
+            });
+            
+            // Fecha o modal quando pressionar a tecla Escape
+            document.addEventListener("keydown", function(event) {
+                // Verifica se a tecla pressionada foi Escape e se o modal está visível
+                if (event.key === "Escape" && modal.classList.contains("show")) {
+                    closeModal(); // Fecha o modal
+                }
+            });
+        });
+        
+        // Funções legadas mantidas para compatibilidade (não utilizadas no novo sistema)
+        
+        /**
+         * Função legada para adicionar aluno (mantida para compatibilidade)
+         */
+        function adicionarAluno() {
+            const input = document.getElementById("nomeAluno"); // Busca campo de input
+            const nome = input.value.trim(); // Remove espaços em branco
+          
+            if (nome === "") { // Valida se nome não está vazio
+                alert("Por favor, digite um nome válido."); // Alerta de validação
+                return; // Sai da função
+            }
+          
+            const listaAlunos = document.getElementById("listaAlunos"); // Busca lista de alunos
+          
+            // Cria elemento do aluno
+            const alunoTag = document.createElement("span");
+            alunoTag.className = "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800";
+            alunoTag.innerHTML = `
+                ${nome}
+                <button onclick="removerAluno(this)" class="ml-2 text-blue-600 hover:text-blue-800 focus:outline-none">
+                    ×
+                </button>
+            `;
+          
+            listaAlunos.appendChild(alunoTag); // Adiciona à lista
+            input.value = ""; // Limpa o campo
+            input.focus(); // Foca no campo novamente
+        }
+          
+        /**
+         * Função legada para remover aluno (mantida para compatibilidade)
+         */
+        function removerAluno(button) {
+            button.parentElement.remove(); // Remove o elemento pai (tag do aluno)
+        }
+    </script>
 </body>
 </html>
