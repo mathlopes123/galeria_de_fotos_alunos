@@ -1,0 +1,438 @@
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-BR"> <!-- Elemento raiz com idioma português brasileiro -->
+<head>
+    <!-- Configurações de metadados do documento -->
+    <meta charset="UTF-8"> <!-- Define codificação de caracteres UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuração responsiva para dispositivos móveis -->
+    <title>Galeria de Fotos</title> <!-- Título que aparece na aba do navegador -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Carrega framework CSS Tailwind via CDN -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo CSS externo -->
+</head>
+<body class="bg-gray-50 min-h-screen"> <!-- Corpo com fundo cinza claro e altura mínima da tela -->
+    <!-- Cabeçalho da página -->
+    <header class="bg-white shadow-sm border-b"> <!-- Header com fundo branco, sombra sutil e borda inferior -->
+        <div class="max-w-7xl mx-auto px-4 py-6"> <!-- Container centralizado com padding -->
+            <h1 class="text-3xl font-bold text-gray-900 text-center">Galeria de Fotos</h1> <!-- Título principal centralizado -->
+            <p class="text-gray-600 text-center mt-2">Clique nas imagens para vê-las em tela cheia</p> <!-- Texto explicativo atualizado -->
+        </div>
+    </header>
+
+    <!-- Conteúdo principal da página -->
+    <main class="max-w-7xl mx-auto"> <!-- Container principal centralizado -->
+        <div class="gallery-container"> <!-- Container da galeria com CSS Grid -->
+            
+<!-- Item 1: Adriel Vinicius da Luz Tomaz -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/adriel.jpg" 
+         alt="Adriel Vinicius da Luz Tomaz" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="1º Adriel Vinicius da Luz Tomaz" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 2: Breno Ferreira de Brito -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/breno.jpg" 
+         alt="Breno Ferreira de Brito" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="2º Breno Ferreira de Brito" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 3: Carlos Douglas Araujo de Souza -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/carlos.jpg" 
+         alt="Carlos Douglas Araujo de Souza" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="3º Carlos Douglas Araujo de Souza" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 4: Cleiton Douglas da Silva -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/cleiton.jpg" 
+         alt="Cleiton Douglas da Silva" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="4º Cleiton Douglas da Silva" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 5: Derek Eduardo Delgado de Souza -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/derek.jpg" 
+         alt="Derek Eduardo Delgado de Souza" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="5º Derek Eduardo Delgado de Souza" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 6: Felipe Nader de Macedo Neves -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/felipe.jpg" 
+         alt="Felipe Nader de Macedo Neves" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="6º Felipe Nader de Macedo Neves" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 7: Gabriel Merico Hort -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/gabriel.jpg" 
+         alt="Gabriel Merico Hort" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="7º Gabriel Merico Hort" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 8: Guilherme dos Reis Soares dos Santos -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/guilherme.jpg" 
+         alt="Guilherme dos Reis Soares dos Santos" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="8º Guilherme dos Reis Soares dos Santos" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 9: Gustavo Martins Lyra -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/gustavo.jpg" 
+         alt="Gustavo Martins Lyra" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="9º Gustavo Martins Lyra" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 10: Jackson José Adão Félix -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/jackson.jpg" 
+         alt="Jackson José Adão Félix" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="10º Jackson José Adão Félix" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 11: Janaine Nunes da Silva -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/janaine.jpg" 
+         alt="Janaine Nunes da Silva" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="11º Janaine Nunes da Silva" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+            
+<!-- Item 12: João Gabriel Carmo Bonfim -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/carmo.jpg" 
+         alt="João Gabriel Carmo Bonfim" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="12º João Gabriel Carmo Bonfim" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 13: João Gabriel José -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/josé.jpg" 
+         alt="João Gabriel José" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="13º João Gabriel José" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 14: Leonardo Antonio Prado Trindade -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/leonardo.jpg" 
+         alt="Leonardo Antonio Prado Trindade" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="14º Leonardo Antonio Prado Trindade" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 15: Lucas Calciolari dos Santos -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/lucas.jpg" 
+         alt="Lucas Calciolari dos Santos" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="15º Lucas Calciolari dos Santos" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 16: Maria Eduarda Borzuk da Fonseca Urbanski -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/maria_borzuk.jpg" 
+         alt="Maria Eduarda Borzuk da Fonseca Urbanski" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="16º Maria Eduarda Borzuk da Fonseca Urbanski" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 17: Maria Gabriela Aquino Pinheiro -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/gabriela.jpg" 
+         alt="Maria Gabriela Aquino Pinheiro" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="17º Maria Gabriela Aquino Pinheiro" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 18: Mateus Henrique de Carvalho -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/mateus.jpg" 
+         alt="Mateus Henrique de Carvalho" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="18º Mateus Henrique de Carvalho" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 19: Matheus dos Santos Lopes -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/matheus.jpg" 
+         alt="Matheus dos Santos Lopes" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="19º Matheus dos Santos Lopes" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 20: Pedro Eduardo Doarte -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/semfoto.jpg" 
+         alt="Pedro Eduardo Doarte" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="20º Pedro Eduardo Doarte" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+<!-- Item 21: Renan Stefani Lira -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/renan.jpg" 
+         alt="Renan Stefani Lira" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="21º Renan Stefani Lira" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent"> <!-- Campo de texto com largura total, texto pequeno e centralizado -->
+    </div>
+</div>
+
+
+ <!-- Item 22: Sabrina Oliveira Alves -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/sabrina.jpg" 
+         alt="Sabrina Oliveira Alves" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="22º Sabrina Oliveira Alves" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent" 
+               onclick="event.stopPropagation()"> <!-- Campo de texto com largura total, texto pequeno e centralizado, evento para não propagar o clique -->
+    </div>
+</div>
+
+<!-- Item 23: Samantha Christakis Garcia Colluci -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/samantha.jpg" 
+         alt="Samantha Christakis Garcia Colluci" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="23º Samantha Christakis Garcia Colluci" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent" 
+               onclick="event.stopPropagation()"> <!-- Campo de texto com largura total, texto pequeno e centralizado, evento para não propagar o clique -->
+    </div>
+</div>
+
+<!-- Item 24: Victor Gabriel de Souza -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/victor.jpg" 
+         alt="Victor Gabriel de Souza" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="24º Victor Gabriel de Souza" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent" 
+               onclick="event.stopPropagation()"> <!-- Campo de texto com largura total, texto pequeno e centralizado, evento para não propagar o clique -->
+    </div>
+</div>
+
+<!-- Item 25: Vitor Queiroz de Brito Nascimento -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/queiroz.jpg" 
+         alt="Vitor Queiroz de Brito Nascimento" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="25º Vitor Queiroz de Brito Nascimento" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent" 
+               onclick="event.stopPropagation()"> <!-- Campo de texto com largura total, texto pequeno e centralizado, evento para não propagar o clique -->
+    </div>
+</div>
+
+<!-- Item 26: Maria Vitória de Quadros Nascimento -->
+<div class="gallery-item relative overflow-hidden rounded-lg bg-white shadow-md" onclick="openModal(this)"> <!-- Item da galeria, com estilo e evento onclick -->
+    <img src="img/semfoto.jpg" 
+         alt="Maria Vitória de Quadros Nascimento" 
+         class="w-full h-48 object-cover"> <!-- Imagem com largura total, altura fixa e ajuste da imagem para cobrir o espaço -->
+    <div class="p-2 bg-white"> <!-- Container para o campo de texto com padding e fundo branco -->
+        <input type="text" placeholder="26º Maria Vitória de Quadros Nascimento" 
+               class="w-full text-sm text-center border-none outline-none bg-transparent" 
+               onclick="event.stopPropagation()"> <!-- Campo de texto com largura total, texto pequeno e centralizado, evento para não propagar o clique -->
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <!-- Adicionando modal popup para visualização em tela cheia -->
+    <!-- Modal overlay que cobre toda a tela -->
+    <div id="imageModal" class="modal-overlay"> <!-- Modal com ID único para controle via JavaScript -->
+        <div class="modal-content"> <!-- Container do conteúdo centralizado -->
+            <!-- Botão de fechar (X) posicionado no canto superior direito -->
+            <button class="close-button" onclick="closeModal()" aria-label="Fechar modal"> <!-- Botão acessível com aria-label -->
+                ×
+            </button>
+            <!-- Imagem ampliada que será exibida no modal -->
+            <img id="modalImage" class="modal-image" src="/placeholder.svg" alt=""> <!-- Imagem que receberá src e alt dinamicamente -->
+            <!-- Nome do aluno exibido abaixo da imagem -->
+            <div id="modalName" class="modal-name"></div> <!-- Container do nome que receberá texto dinamicamente -->
+        </div>
+    </div>
+
+    <script>
+        
+        /**
+         * Função para abrir o modal com a imagem em tela cheia
+         * @param {HTMLElement} element - O elemento da galeria que foi clicado
+         */
+        function openModal(element) {
+            // Busca a imagem dentro do elemento clicado
+            const img = element.querySelector("img");
+            // Busca o campo de input com o nome do aluno
+            const input = element.querySelector("input");
+            
+            // Obtém referências aos elementos do modal
+            const modal = document.getElementById("imageModal"); // Modal overlay
+            const modalImage = document.getElementById("modalImage"); // Imagem do modal
+            const modalName = document.getElementById("modalName"); // Nome do aluno no modal
+            
+            // Define a fonte da imagem do modal como a mesma da galeria
+            modalImage.src = img.src;
+            // Define o texto alternativo da imagem
+            modalImage.alt = img.alt;
+            // Define o nome exibido (usa o valor digitado ou o placeholder)
+            modalName.textContent = input.value || input.placeholder;
+            
+            // Mostra o modal adicionando a classe 'show'
+            modal.classList.add("show");
+            // Previne scroll da página quando modal está aberto
+            document.body.style.overflow = "hidden";
+        }
+        
+        /**
+         * Função para fechar o modal
+         */
+        function closeModal() {
+            // Obtém referência ao modal
+            const modal = document.getElementById("imageModal");
+            // Remove a classe 'show' para esconder o modal
+            modal.classList.remove("show");
+            // Restaura o scroll da página
+            document.body.style.overflow = "auto";
+        }
+        
+        // Event listeners para melhorar a experiência do usuário
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtém referência ao modal
+            const modal = document.getElementById("imageModal");
+            
+            // Fecha o modal quando clicar fora da imagem (no overlay)
+            modal.addEventListener("click", function(event) {
+                // Verifica se o clique foi no overlay (não na imagem ou conteúdo)
+                if (event.target === modal) {
+                    closeModal(); // Fecha o modal
+                }
+            });
+            
+            // Fecha o modal quando pressionar a tecla Escape
+            document.addEventListener("keydown", function(event) {
+                // Verifica se a tecla pressionada foi Escape e se o modal está visível
+                if (event.key === "Escape" && modal.classList.contains("show")) {
+                    closeModal(); // Fecha o modal
+                }
+            });
+        });
+        
+        // Funções legadas mantidas para compatibilidade (não utilizadas no novo sistema)
+        
+        /**
+         * Função legada para adicionar aluno (mantida para compatibilidade)
+         */
+        function adicionarAluno() {
+            const input = document.getElementById("nomeAluno"); // Busca campo de input
+            const nome = input.value.trim(); // Remove espaços em branco
+          
+            if (nome === "") { // Valida se nome não está vazio
+                alert("Por favor, digite um nome válido."); // Alerta de validação
+                return; // Sai da função
+            }
+          
+            const listaAlunos = document.getElementById("listaAlunos"); // Busca lista de alunos
+          
+            // Cria elemento do aluno
+            const alunoTag = document.createElement("span");
+            alunoTag.className = "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800";
+            alunoTag.innerHTML = `
+                ${nome}
+                <button onclick="removerAluno(this)" class="ml-2 text-blue-600 hover:text-blue-800 focus:outline-none">
+                    ×
+                </button>
+            `;
+          
+            listaAlunos.appendChild(alunoTag); // Adiciona à lista
+            input.value = ""; // Limpa o campo
+            input.focus(); // Foca no campo novamente
+        }
+          
+        /**
+         * Função legada para remover aluno (mantida para compatibilidade)
+         */
+        function removerAluno(button) {
+            button.parentElement.remove(); // Remove o elemento pai (tag do aluno)
+        }
+    </script>
+</body>
+</html>
